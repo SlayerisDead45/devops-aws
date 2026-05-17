@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>My Submission Form</h1>
+
+    {% if error_msg %}
+        <p style="color: red;">{{ error_msg }}</p>
+    {% endif %}
+
+    <form action="/submit" method="POST">
+        <input type="text" name="content" placeholder="Enter text here">
+        <button type="submit">Send to Mongo</button>
+    </form>
+</body>
+</html>
