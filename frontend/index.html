@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Submission Form</title>
+</head>
+<body>
+    <h1>My Submission Form</h1>
+
+    <!-- Error container that updates dynamically -->
+    <p id="error-block" style="color: red; display: none;"></p>
+    <!-- Success container that updates dynamically -->
+    <h3 id="success-block" style="color: green; display: none;">Data submitted successfully</h3>
+
+    <form id="submissionForm">
+        <input type="text" id="content" placeholder="Enter text here">
+        <button type="submit">Send to Mongo</button>
+    </form>
+
+    <script>
+        document.getElementById('submissionForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop the page from reloading
+
+            var userText = document.getElementById('content').value;
+            var errorBlock = document.getElementById('error-block');
+            var successBlock = document.getElementById('success-block');
+
+            // Hide old messages
+            errorBlock.style.display = 'none';
+            successBlock.style.display = 'none';
+
+            // Send text to our Flask backend running on port 5000
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: userText
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    successBlock.style.display = 'block';
+                    document.getElementById('content').value = ''; // Clear input
+                } else {
+                    errorBlock.style.display = 'block';
+                    errorBlock.innerHTML = '<strong>' + data.error_msg + '</strong>';
+                }
+            })
+            .catch(err => {
+                errorBlock.style.display = 'block';
+                errorBlock.innerHTML = '<strong>Error: Could not connect to backend server.</strong>';
+            });
+        });
+    </script>
+</body>
+</html>

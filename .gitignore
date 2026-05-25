@@ -1,35 +1,6 @@
-# Secret environment variables (CRITICAL)
-.env
-.env.local
-.env.*
-instance/
-config.py
-
-# Python files
+myenv/
 __pycache__/
-*.py[cod]
-*$py.class
-*.ext
+.env
+node_modules/
 *.pyc
-*.pyo
-
-# Virtual Environments
-venv/
-ENV/
-env/
-.venv/
-
-# Operating System Files
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-.DS_Store
-
-# Editor / IDE Files
 .vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.swp

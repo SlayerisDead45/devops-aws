@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./backend
+    image: toto3107/5thassignment-backend:latest
+    ports:
+      - "5000:5000"
+    networks:
+      - mynetwork
+
+  frontend:
+    build: ./frontend
+    image: toto3107/5thassignment-frontend:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
