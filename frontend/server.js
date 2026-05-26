@@ -16,7 +16,7 @@ app.post('/submit', async function(req, res) {
     const userText = req.body.content;
 
     try {
-        const response = await fetch('http://backend:5000/submit', {
+        const response = await fetch(process.env.FLASK_URL + '/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ content: userText })
