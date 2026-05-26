@@ -1,6 +1,8 @@
 myenv/
 __pycache__/
 .env
+backend/.env
 node_modules/
 *.pyc
 .vscode/
+k8s/mongo-secret.yml
